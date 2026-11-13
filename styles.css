@@ -1980,3 +1980,22 @@ body > .site-footer { position: static; display: grid; grid-template-columns: mi
 @media (max-width: 760px) {
   .project-feature { grid-column: 1; grid-row: auto; width: 72%; }
 }
+
+/* Home testimonials: smaller flowers that keep turning slowly once they've bloomed. */
+.home-testimonials .testimonials-grid { max-width: 960px; }
+.flower-backdrop-section .home-testimonials .testimonial { min-height: 0; aspect-ratio: 12.7 / 13.71; padding: 12% 18%; gap: 16px; }
+.home-testimonials .testimonial blockquote p { font-size: clamp(16px, 1.4vw, 19px); text-wrap: balance; }
+.home-testimonials .testimonial-logos img { width: 100px; height: 58px; }
+.home-testimonials .testimonial:not(.bloom-ready)::before,
+.home-testimonials .testimonial.bloom-finished::before { animation: testimonial-flower-spin 60s linear infinite; }
+.home-testimonials .testimonial:nth-child(2):not(.bloom-ready)::before,
+.home-testimonials .testimonial:nth-child(2).bloom-finished::before { animation-direction: reverse; }
+@keyframes testimonial-flower-spin { from { rotate: 0deg; } to { rotate: 360deg; } }
+@media (max-width: 760px) {
+  .flower-backdrop-section .home-testimonials .testimonial { width: 252px; padding: 34px 13% 40px; gap: 8px; }
+  .home-testimonials .testimonial blockquote p { font-size: 13px; }
+  .home-testimonials .testimonial-logos img { width: 56px; height: 30px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-testimonials .testimonial::before { animation: none; }
+}
