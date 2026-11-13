@@ -35,44 +35,42 @@
     const box = journey.getBoundingClientRect();
     const width = box.width, height = box.height;
     if (!width || !height) return;
-    // Sit each flower level with the first line of its title.
+    // Centre each flower on its title (both lines, when a title wraps).
     items.forEach(item => {
       const title = item.querySelector('h3');
-      const range = document.createRange();
-      range.selectNodeContents(title);
-      const titleBox = title.getBoundingClientRect();
-      const line = range.getClientRects()[0] || titleBox;
-      // offsetTop ignores the title's slide-in offset, so the flower lands where the title ends up.
-      item.style.setProperty('--flower-y', `${(title.offsetTop + line.top - titleBox.top + line.height / 2).toFixed(1)}px`);
+      item.style.setProperty('--flower-y', `${(title.offsetTop + title.offsetHeight / 2).toFixed(1)}px`);
     });
     const parts = items.map((item, index) => {
       const flower = item.querySelector('img').getBoundingClientRect();
       const row = item.getBoundingClientRect();
       const x = flower.left + flower.width / 2 - box.left;
       // Odd items have their text on the right, so the line roams the left side (and the other way round).
-      const textOnRight = index % 2 === 0;
+      const side = index % 2 === 0 ? 0 : width;
       return {
         flower: { x, y: flower.top + flower.height / 2 - box.top },
         top: row.top - box.top,
         bottom: row.bottom - box.top,
-        laneX: textOnRight ? x * .4 : x + (width - x) * .6
+        // How far the line swings out: rounder loops on wide screens, never past the edge on phones.
+        out: t => x + Math.sign(side - x) * Math.min(Math.abs(side - x) * t, 300 * t)
       };
     });
-    const points = [];
+    const first = parts[0], last = parts[parts.length - 1];
+    // Drift in from above the first flower.
+    const points = [{ x: first.out(.25), y: 0 }, { x: first.out(.05), y: first.flower.y * .55 }];
     const flowerIndex = [];
     parts.forEach((part, index) => {
       flowerIndex.push(points.length);
       points.push(part.flower);
-      // Drift into the free side, beside the description.
-      points.push({ x: part.laneX, y: part.top + (part.bottom - part.top) * .9 });
+      const height = part.bottom - part.top;
+      // A soft S through the empty side, beside the description.
+      points.push({ x: part.out(.62), y: part.top + height * .55 });
+      points.push({ x: part.out(.4), y: part.bottom + 6 });
       const next = parts[index + 1];
-      if (next) {
-        // Cross over in the gap between two services, where there's no text.
-        points.push({ x: (part.flower.x + next.flower.x) / 2, y: (part.bottom + next.top) / 2 });
-      } else {
-        points.push({ x: (part.laneX + part.flower.x) / 2, y: part.bottom + 18 });
-      }
+      // Cross over in the gap between two services, where there's no text.
+      if (next) points.push({ x: (part.flower.x + next.flower.x) / 2, y: (part.bottom + next.top) / 2 + 4 });
     });
+    // Glide out towards the button below, fading away.
+    points.push({ x: width / 2, y: height - 6 });
     svg.setAttribute('viewBox', `0 0 ${width.toFixed(1)} ${height.toFixed(1)}`);
     // Measure how far along the line each flower sits.
     thresholds = flowerIndex.map(index => {
@@ -82,6 +80,22 @@
     });
     path.setAttribute('d', curve(points));
     length = path.getTotalLength();
+    // Fade the line in at the top and out at the very end, so it has no hard start or stop.
+    const ns = 'http://www.w3.org/2000/svg';
+    let fade = svg.querySelector('#thread-fade');
+    if (!fade) {
+      const defs = document.createElementNS(ns, 'defs');
+      fade = document.createElementNS(ns, 'linearGradient');
+      fade.id = 'thread-fade';
+      fade.setAttribute('gradientUnits', 'userSpaceOnUse');
+      defs.append(fade);
+      svg.prepend(defs);
+    }
+    fade.setAttribute('x1', 0); fade.setAttribute('x2', 0);
+    fade.setAttribute('y1', 0); fade.setAttribute('y2', height);
+    const stop = (offset, opacity) => `<stop offset="${Math.max(0, Math.min(1, offset)).toFixed(4)}" stop-color="currentColor" stop-opacity="${opacity}"/>`;
+    fade.innerHTML = stop(0, 0) + stop(first.flower.y * .7 / height, 1) + stop((last.bottom + 6) / height, 1) + stop(1, 0);
+    path.style.stroke = 'url(#thread-fade)';
     thresholds = thresholds.map(value => value / length);
     stops = [{ y: 0, value: 0 }, ...parts.map((part, index) => ({ y: part.flower.y / height, value: thresholds[index] })), { y: 1, value: 1 }];
     if (animate) path.style.strokeDasharray = `${length} ${length}`;
