@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 1280" fill="none">
+  <defs>
+    <linearGradient id="paper" x1="180" y1="0" x2="490" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#e6e5e1"/><stop offset=".23" stop-color="#fcfbf8"/><stop offset=".7" stop-color="#f6f5f1"/><stop offset="1" stop-color="#d9d8d4"/></linearGradient>
+    <linearGradient id="fold" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#c5c4c0"/><stop offset=".48" stop-color="#eeeDE9"/><stop offset="1" stop-color="#faf9f5"/></linearGradient>
+    <linearGradient id="turn" x1="150" y1="650" x2="520" y2="900" gradientUnits="userSpaceOnUse"><stop stop-color="#faf9f5"/><stop offset=".5" stop-color="#e7e6e2"/><stop offset="1" stop-color="#bebdb9"/></linearGradient>
+    <filter id="shadow" x="-35%" y="-15%" width="170%" height="145%"><feDropShadow dx="7" dy="15" stdDeviation="12" flood-color="#000" flood-opacity=".13"/></filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <!-- Back of the first loose curl. -->
+    <path d="M230 40 L445 65 C417 185 285 285 209 360 C162 406 180 445 238 453 L444 485 C310 493 136 456 130 389 C123 304 208 185 230 40Z" fill="url(#fold)"/>
+    <!-- Front face rolls diagonally into the first bend. -->
+    <path d="M230 40 L445 65 C426 182 420 271 472 325 C512 367 541 420 517 473 C491 529 384 547 290 537 C204 528 147 476 130 389 C173 450 247 467 303 446 C362 424 347 366 311 318 C252 239 202 166 230 40Z" fill="url(#paper)"/>
+    <!-- The middle length bends back across the page. -->
+    <path d="M472 325 C531 355 565 425 536 502 C505 584 371 619 267 679 C219 707 221 753 268 778 L468 823 C374 820 219 812 177 761 C123 697 157 629 218 581 C318 502 431 475 472 325Z" fill="url(#turn)"/>
+    <!-- Long front face unwinds into the lower loop. -->
+    <path d="M267 679 C216 709 223 750 268 778 C330 817 452 801 508 861 C571 929 520 1025 441 1087 L271 1219 L94 1147 C141 1082 219 1022 272 975 C337 917 322 881 268 854 C178 809 145 745 177 698 C193 675 230 670 267 679Z" fill="url(#paper)"/>
+    <!-- Folded edge under the hanging end. -->
+    <path d="M94 1147 L271 1219 L285 1240 L110 1173Z" fill="#d2d1cd"/>
+  </g>
+  <path d="M234 44 L440 68" stroke="#fff" stroke-opacity=".7"/>
+  <path d="M98 1147 L271 1219" stroke="#cecdc8" stroke-width="1"/>
+</svg>
