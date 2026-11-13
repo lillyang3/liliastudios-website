@@ -11,10 +11,11 @@
   });
   const update = () => {
     const height = document.documentElement.clientHeight;
-    receipts.forEach(receipt => {
-      const top = receipt.parentElement.getBoundingClientRect().top;
+    // Measure every receipt first, then restyle them, so the phone lays the page out once per frame.
+    const boxes = receipts.map(receipt => [receipt.parentElement.getBoundingClientRect().top, receipt.getBoundingClientRect().height]);
+    receipts.forEach((receipt, index) => {
+      const [top, paperHeight] = boxes[index];
       const progress = Math.max(0, Math.min(1, (height * .55 - top) / (height * .48)));
-      const paperHeight = receipt.getBoundingClientRect().height;
       const folded = Math.max(0, paperHeight - 96);
       receipt.style.clipPath = `inset(0px 0px ${folded * (1 - progress) - 12 * progress}px 0px)`;
       receipt.style.setProperty('--receipt-curl-top', `${68 + progress * Math.max(0, paperHeight - 88)}px`);

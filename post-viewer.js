@@ -1,6 +1,16 @@
 (() => {
   // F Tourists carousels: "Post 1 / 2 / 3" buttons switch posts; each post is a stack of its slides,
   // the current slide on top and the next few peeking out behind. Click, the arrows, keys or a swipe move through it.
+  // Embedded Instagram posts report their own height; size each one to fit, so nothing gets cut off.
+  addEventListener('message', event => {
+    if (event.origin !== 'https://www.instagram.com') return;
+    let data = event.data;
+    try { if (typeof data === 'string') data = JSON.parse(data); } catch (error) { return; }
+    const height = data && data.details && data.details.height;
+    if (!data || data.type !== 'MEASURE' || !(height > 200)) return;
+    const frame = [...document.querySelectorAll('.video-embed iframe')].find(item => item.contentWindow === event.source);
+    if (frame) frame.style.height = `${Math.ceil(height)}px`;
+  });
   const viewer = document.querySelector('.post-viewer');
   if (!viewer) return;
   const tabs = [...viewer.querySelectorAll('.post-tab')];
