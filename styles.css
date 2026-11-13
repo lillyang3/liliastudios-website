@@ -2176,3 +2176,56 @@ html.lenis { scroll-behavior: auto; }
 @media (prefers-reduced-motion: reduce) {
   .sr { opacity: 1; translate: none; transition: none; }
 }
+
+/* Services page, phones: testimonials swipe sideways, one flower at a time (testimonial-carousel.js). */
+.testimonial-controls { display: none; }
+@media (max-width: 760px) {
+  .services-page .testimonials-grid { display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 14px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; padding: 4px calc(50% - 135px) 8px; scrollbar-width: none; }
+  .services-page .testimonials-grid::-webkit-scrollbar { display: none; }
+  .services-page .flower-backdrop-section .testimonial { flex: 0 0 270px; width: 270px; scroll-snap-align: center; }
+  .services-page .testimonial-controls { display: flex; justify-content: center; margin: 14px auto 0; }
+}
+
+/* Works page intro line. */
+.works-lede { margin: 6px 0 0; color: #555; font-size: clamp(14px, 1.2vw, 16px); line-height: 1.4; }
+
+/* Hayag: landscape chapter spreads in the stack, then the full portrait series on its own dark panel. */
+.post-stack.post-stack--wide { width: min(92%, 600px); aspect-ratio: 1.2; margin-right: 8%; }
+.hayag-chapters .photo-credit { margin: 0; color: var(--gray); font-size: 13px; }
+.project-gallery { grid-column: 1 / -1; display: grid; justify-items: center; gap: 14px; margin: 8px 0 0; padding: clamp(18px, 4vw, 56px); border-radius: 28px; background: #100f0d; }
+.project-gallery img { display: block; width: min(100%, 880px); height: auto; }
+.project-gallery figcaption { color: #9a958c; font-size: 13px; text-align: center; }
+@media (max-width: 760px) {
+  .post-stack.post-stack--wide { width: 88%; margin-right: 8%; }
+  .project-gallery { border-radius: 20px; }
+}
+
+/* FAQ and privacy pages: one calm reading column. */
+.text-main { width: 100%; max-width: 780px; margin: 0 auto; padding: clamp(40px, 7vw, 96px) 20px clamp(64px, 9vw, 120px); }
+.text-head h1 { margin: 6px 0 14px; font-size: clamp(34px, 5vw, 60px); font-weight: 500; line-height: 1.02; letter-spacing: -.045em; }
+.text-lede { margin: 0 0 clamp(28px, 4vw, 48px); color: #555; font-size: clamp(16px, 1.5vw, 19px); line-height: 1.4; }
+.faq-list { display: grid; gap: 10px; }
+.faq-item { border-radius: 20px; background: #efefef; transition: background-color 200ms ease; }
+.faq-item[open] { background: var(--blue); color: var(--white); }
+.faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 22px; cursor: pointer; list-style: none; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: ""; flex: 0 0 22px; height: 24px; background: currentColor; -webkit-mask: url('assets/flower.svg') center / contain no-repeat; mask: url('assets/flower.svg') center / contain no-repeat; transition: rotate 300ms ease; }
+.faq-item:not([open]) summary::after { background: var(--blue); }
+.faq-item[open] summary::after { rotate: 90deg; }
+.faq-item h2 { margin: 0; font-size: clamp(17px, 1.6vw, 20px); font-weight: 600; line-height: 1.25; letter-spacing: -.02em; }
+.faq-item p { margin: 0; padding: 0 22px 20px; font-size: 16px; line-height: 1.45; letter-spacing: -.01em; }
+.text-cta { margin-top: clamp(32px, 5vw, 56px); text-align: center; }
+.text-cta p { margin: 0 0 6px; font-size: 18px; }
+.text-cta .call-button { background: var(--blue); color: var(--white); }
+.text-body section + section { margin-top: 28px; }
+.text-body h2 { margin: 0 0 8px; font-size: 20px; font-weight: 600; letter-spacing: -.02em; }
+.text-body p, .text-body li { font-size: 16px; line-height: 1.5; }
+.text-body p { margin: 0 0 10px; }
+.text-body ul { margin: 0 0 10px; padding-left: 20px; }
+.text-body a, .faq-item a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  .faq-item, .faq-item summary::after { transition: none; }
+}
+.faq-link { margin: 14px 0 0; text-align: right; }
+.faq-link a { color: var(--blue); font-size: 15px; }
+.faq-link a:hover { text-decoration: underline; text-underline-offset: 3px; }
