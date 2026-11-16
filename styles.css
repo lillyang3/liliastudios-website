@@ -2508,3 +2508,24 @@ html.lightbox-open { overflow: hidden; }
 /* Services: tighter gap between testimonials and the final CTA. */
 .services-page main.services-content { padding-bottom: 0; }
 .services-page .end-cta { margin-top: clamp(40px, 5vw, 72px); }
+
+/* Photo viewer: the flower cursor can't sit above the viewer, so show the normal cursor there,
+   and make closing obvious. */
+html.lightbox-open .flower-cursor { display: none; }
+html.has-flower-cursor .lightbox, html.has-flower-cursor .lightbox * { cursor: auto !important; }
+html.has-flower-cursor .lightbox button { cursor: pointer !important; }
+html.has-flower-cursor .lightbox-stage { cursor: zoom-out !important; }
+html.has-flower-cursor .lightbox-stage img { cursor: auto !important; }
+.lightbox .lightbox-close { top: 16px; right: 16px; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--white); color: var(--blue); font-size: 30px; line-height: 1; box-shadow: 0 4px 16px rgba(0,0,0,.35); }
+.lightbox .lightbox-close:hover, .lightbox .lightbox-close:focus-visible { background: var(--blue); color: var(--white); }
+/* Home CTA: smaller on desktop. */
+@media (min-width: 761px) {
+  .end-cta--compact { max-width: 1040px; margin-left: auto; margin-right: auto; padding-block: clamp(36px, 4vw, 56px); }
+  .end-cta--compact h2 { font-size: clamp(28px, 3.4vw, 46px); }
+  .end-cta--compact .end-cta-text { margin-top: 12px; font-size: 18px; }
+  .end-cta--compact .end-cta-actions { margin-top: 24px; }
+}
+/* Mobile menu: slightly smaller links so it breathes. */
+.mobile-navigation nav a { font-size: clamp(38px, 11vw, 64px); }
+.mobile-navigation .mobile-menu-flower { width: 24px; height: 26px; }
+.mobile-navigation nav { padding-block: 4vh; }

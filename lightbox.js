@@ -55,7 +55,7 @@
   box.querySelector('.lightbox-close').addEventListener('click', () => box.close());
   box.querySelector('.lightbox-prev').addEventListener('click', () => show(index - 1));
   box.querySelector('.lightbox-next').addEventListener('click', () => show(index + 1));
-  box.addEventListener('click', event => { if (event.target === box) box.close(); });
+  box.addEventListener('click', event => { if (event.target === box || event.target === stage) box.close(); });
   box.addEventListener('keydown', event => {
     if (event.key === 'ArrowRight') show(index + 1);
     if (event.key === 'ArrowLeft') show(index - 1);
