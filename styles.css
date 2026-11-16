@@ -2492,3 +2492,9 @@ html.lightbox-open { overflow: hidden; }
   .footer-v2 .footer-col--wide { grid-column: 1 / -1; grid-row: 3; order: 0; }
   .footer-v2 .footer-col--wide ul { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; }
 }
+
+/* Contact page + About link to it. */
+.about-contact h1 { margin: 0 auto; max-width: none; font-size: clamp(40px, 6vw, 84px); font-weight: 600; line-height: 1.02; letter-spacing: -.045em; text-transform: uppercase; }
+.contact-page-section > p { max-width: 36ch; margin-left: auto; margin-right: auto; }
+.contact-main { padding-top: clamp(24px, 4vw, 56px); }
+.contact-message-link { display: block; width: fit-content; margin: 16px auto 0; color: var(--blue); font-size: 16px; text-decoration: underline; text-underline-offset: 4px; }
