@@ -2456,3 +2456,29 @@ html.lightbox-open { overflow: hidden; }
   .garden-bloom, .garden-flower.is-docked .garden-bloom, .garden-flower.is-docked .garden-bloom img { animation: none; }
   .garden-flower { transition: none; }
 }
+
+/* Audience cards: only the illustration is the link. */
+.audience-link::after { content: none; }
+.audience-icon-link { display: block; border-radius: 12px; transition: scale 250ms cubic-bezier(.22,1,.36,1), filter 250ms ease; }
+.audience-icon-link:hover, .audience-icon-link:focus-visible { scale: 1.04; filter: brightness(1.1); }
+.audience-card:focus-within { outline: none; }
+.audience-icon-link:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+
+/* Garden v2: a slimmer field, more flowers, and the review in a clear card right under it. */
+.garden { max-width: 1000px; }
+.garden-field { height: clamp(250px, 28vw, 330px); }
+.garden-dock { width: clamp(120px, 15vw, 160px); }
+.garden-flower { width: clamp(72px, 8vw, 96px); }
+.garden-flower.is-docked { scale: 1.55; }
+.garden-petal { position: absolute; left: var(--x); top: var(--y); width: clamp(60px, 7vw, 90px); aspect-ratio: 12.7 / 13.71; translate: -50% -50%; scale: var(--s); background: rgba(255, 255, 255, .22); -webkit-mask: url('assets/flower.svg') center / contain no-repeat; mask: url('assets/flower.svg') center / contain no-repeat; animation: garden-float 9s ease-in-out infinite; animation-delay: var(--d); pointer-events: none; }
+.garden-note { position: relative; min-height: 0; max-width: 820px; margin: 22px auto 0; padding: clamp(22px, 3vw, 34px) clamp(20px, 4vw, 44px); border-radius: 24px; background: #efefef; text-align: center; }
+.garden-note::before { content: ""; position: absolute; top: -12px; left: 50%; width: 24px; height: 24px; translate: -50% 0; rotate: 45deg; background: #efefef; border-radius: 4px; }
+.garden-label { margin: 0 0 10px; color: var(--blue); font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.garden-quote p { font-size: clamp(20px, 2.3vw, 30px); }
+.garden-hint { margin: 14px 0 0; color: #777; font-size: 14px; text-align: center; }
+@media (max-width: 760px) {
+  .garden-field { height: 280px; }
+  .garden-flower { width: 70px; }
+  .garden-note { border-radius: 20px; }
+}
+@media (prefers-reduced-motion: reduce) { .garden-petal { animation: none; } }
