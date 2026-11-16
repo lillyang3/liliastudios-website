@@ -2498,3 +2498,13 @@ html.lightbox-open { overflow: hidden; }
 .contact-page-section > p { max-width: 36ch; margin-left: auto; margin-right: auto; }
 .contact-main { padding-top: clamp(24px, 4vw, 56px); }
 .contact-message-link { display: block; width: fit-content; margin: 16px auto 0; color: var(--blue); font-size: 16px; text-decoration: underline; text-underline-offset: 4px; }
+
+/* Footer without Connect: Explore, Services, Projects. */
+@media (max-width: 760px) {
+  .footer-v2 .footer-col--explore { grid-column: 1; grid-row: 1; }
+  .footer-v2 .footer-col--services { grid-column: 2; grid-row: 1; }
+  .footer-v2 .footer-col--wide { grid-row: 2; }
+}
+/* Services: tighter gap between testimonials and the final CTA. */
+.services-page main.services-content { padding-bottom: 0; }
+.services-page .end-cta { margin-top: clamp(40px, 5vw, 72px); }
