@@ -15,6 +15,11 @@
     });
   });
 
+  // Arriving from the home page with #stays, #events or #ngos opens that filter.
+  const wanted = location.hash.slice(1);
+  const match = buttons.find(button => button.dataset.filter === wanted);
+  if (match) match.click();
+
   if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
