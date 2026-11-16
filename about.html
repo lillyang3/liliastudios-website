@@ -88,6 +88,28 @@
         <li><a href="https://www.linkedin.com/in/lilia-angelicheva-b48373205/" target="_blank" rel="noreferrer"><svg class="about-contact-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="3" fill="currentColor"/><path d="M7.2 10v7M7.2 7.1v.1M11 17v-7m0 3.6c0-2.2 1.3-3.8 3.1-3.8s2.7 1.2 2.7 3.6V17" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>LinkedIn</a></li>
       </ul>
       <a class="call-button" href="https://tidycal.com/liliastudios" target="_blank" rel="noopener">Book a free consultation</a>
+      <p class="contact-or">or send me a message</p>
+      <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <input type="hidden" name="access_key" value="">
+        <input type="hidden" name="subject" value="New message from liliastudios.com">
+        <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="contact-row">
+          <label>Name<input name="name" type="text" autocomplete="name" required maxlength="120"></label>
+          <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+        </div>
+        <label><span>Brand or company <span class="optional">(optional)</span></span><input name="brand" type="text" autocomplete="organization" maxlength="160"></label>
+        <fieldset class="contact-needs">
+          <legend>What do you need?</legend>
+          <label><input type="checkbox" name="needs" value="Brand strategy"><span>Brand strategy</span></label>
+          <label><input type="checkbox" name="needs" value="Social media &amp; content"><span>Social media &amp; content</span></label>
+          <label><input type="checkbox" name="needs" value="Partnerships"><span>Partnerships</span></label>
+          <label><input type="checkbox" name="needs" value="Events"><span>Events</span></label>
+        </fieldset>
+        <label>Message<textarea name="message" rows="5" required maxlength="4000" placeholder="Where is your brand now, and where do you want it to go?"></textarea></label>
+        <label class="contact-consent"><input type="checkbox" name="consent" required><span>I agree that my details are used to reply to my message, as set out in the <a href="privacy.html">privacy policy</a>.</span></label>
+        <button class="contact-send" type="submit">Send message</button>
+        <p class="contact-status" role="status" aria-live="polite"></p>
+      </form>
     </section>
   </main>
   <footer class="site-footer footer-v2">
@@ -118,6 +140,7 @@
   <script src="page-top.js" defer></script>
   <script src="mobile-menu.js" defer></script>
   <script src="lenis.min.js" defer></script>
+  <script src="contact-form.js" defer></script>
   <script src="smooth-scroll.js" defer></script>
 </body>
 </html>
