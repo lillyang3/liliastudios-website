@@ -21,17 +21,28 @@
   close.textContent = 'close ×';
   const links = navigation.cloneNode(true);
   links.setAttribute('aria-label', 'Mobile navigation');
-  // A small flower between each link.
-  [...links.querySelectorAll('a')].slice(1).forEach(link => {
-    const flower = document.createElement('img');
-    flower.src = 'assets/flower.svg';
-    flower.alt = '';
-    flower.className = 'mobile-menu-flower';
-    link.before(flower);
+  // Numbered list; the page you're on gets a small flower.
+  [...links.querySelectorAll('a')].forEach((link, index) => {
+    const number = document.createElement('span');
+    number.className = 'mobile-menu-num';
+    number.setAttribute('aria-hidden', 'true');
+    number.textContent = String(index + 1).padStart(2, '0');
+    link.prepend(number);
   });
-  // Links and flowers float in one after another.
   [...links.children].forEach((item, index) => item.style.setProperty('--i', index));
-  dialog.append(close, links);
+  const logo = document.createElement('a');
+  logo.className = 'mobile-menu-logo';
+  logo.href = 'index.html';
+  logo.setAttribute('aria-label', 'Lilia home');
+  logo.innerHTML = '<img src="assets/logo.svg" alt="">';
+  const foot = document.createElement('div');
+  foot.className = 'mobile-menu-foot';
+  foot.innerHTML = '<a class="mobile-menu-call" href="https://tidycal.com/liliastudios/15-minute-meeting" target="_blank" rel="noopener">Book a free 15&#8209;minute call</a>'
+    + '<p><a href="mailto:hello@liliastudios.com">hello@liliastudios.com</a>'
+    + '<span><a href="https://www.instagram.com/liliyayayaya23/" target="_blank" rel="noreferrer">Instagram</a> · '
+    + '<a href="https://www.linkedin.com/in/lilia-angelicheva-b48373205/" target="_blank" rel="noreferrer">LinkedIn</a></span></p>';
+  foot.style.setProperty('--i', links.children.length);
+  dialog.append(logo, close, links, foot);
   document.body.append(dialog);
   header.append(toggle);
   header.classList.add('mobile-menu-enabled');
