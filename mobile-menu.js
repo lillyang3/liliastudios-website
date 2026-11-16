@@ -43,6 +43,17 @@
     + '<a href="https://www.linkedin.com/in/lilia-angelicheva-b48373205/" target="_blank" rel="noreferrer">LinkedIn</a></span></p>';
   foot.style.setProperty('--i', links.children.length);
   dialog.append(logo, close, links, foot);
+  close.autofocus = true;
+  // Keep the menu's logo exactly where (and as big as) the header logo is, so nothing jumps.
+  const headerLogo = header.querySelector('.brand img');
+  const placeLogo = () => {
+    if (!headerLogo) return;
+    const box = headerLogo.getBoundingClientRect();
+    logo.style.left = `${box.left}px`;
+    logo.style.top = `${box.top}px`;
+    logo.firstChild.style.width = `${box.width}px`;
+    logo.firstChild.style.height = `${box.height}px`;
+  };
   document.body.append(dialog);
   header.append(toggle);
   header.classList.add('mobile-menu-enabled');
@@ -52,7 +63,9 @@
     clearTimeout(closing);
     closing = null;
     previousOverflow = document.body.style.overflow;
+    placeLogo();
     if (!dialog.open) dialog.showModal();
+    close.focus({ preventScroll: true });
     document.body.style.overflow = 'hidden';
     toggle.setAttribute('aria-expanded', 'true');
     requestAnimationFrame(() => requestAnimationFrame(() => dialog.classList.add('is-open')));

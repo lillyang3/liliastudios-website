@@ -2547,3 +2547,9 @@ html.has-flower-cursor .lightbox-stage img { cursor: auto !important; }
 .mobile-navigation .mobile-menu-foot p { display: flex; justify-content: space-between; gap: 12px; margin: 16px 0 0; font-size: 14px; }
 .mobile-navigation .mobile-menu-foot p a { color: var(--blue); }
 @media (prefers-reduced-motion: reduce) { .mobile-navigation .mobile-menu-foot { transition: none; } }
+/* Menu logo sits on top of the header logo: same size, same spot, no focus ring on open. */
+.mobile-navigation .mobile-menu-logo { position: absolute; left: 18px; top: 10px; outline: none; }
+.mobile-navigation .mobile-menu-logo img { width: 66px; height: 54px; object-fit: contain; object-position: left center; }
+.mobile-navigation .mobile-menu-logo:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+.mobile-navigation .mobile-menu-close:focus:not(:focus-visible) { outline: none; }
+.mobile-navigation nav { margin-top: 70px; }
