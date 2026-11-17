@@ -37,7 +37,7 @@
   logo.innerHTML = '<img src="assets/logo.svg" alt="">';
   const foot = document.createElement('div');
   foot.className = 'mobile-menu-foot';
-  foot.innerHTML = '<a class="mobile-menu-call" href="https://tidycal.com/liliastudios/15-minute-meeting" target="_blank" rel="noopener">Book a free 15&#8209;minute call</a>'
+  foot.innerHTML = '<a class="mobile-menu-call" href="https://cal.com/liliastudios/free-discovery-call" target="_blank" rel="noopener">Book a free discovery call</a>'
     + '<p><a href="mailto:hello@liliastudios.com">hello@liliastudios.com</a>'
     + '<span><a href="https://www.instagram.com/liliyayayaya23/" target="_blank" rel="noreferrer">Instagram</a> · '
     + '<a href="https://www.linkedin.com/in/lilia-angelicheva-b48373205/" target="_blank" rel="noreferrer">LinkedIn</a></span></p>';

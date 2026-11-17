@@ -2588,3 +2588,5 @@ html { scroll-padding-top: 96px; }
 .garden-flower.is-dragging { scale: none; --sc: 1.08; transition: none; }
 .garden-flower.is-docked { scale: none; --sc: 1.55; }
 .garden-flower.is-placing { transition: none; }
+.end-cta-text a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.end-cta--light .end-cta-text a { color: var(--blue); }
