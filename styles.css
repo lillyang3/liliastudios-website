@@ -2553,3 +2553,32 @@ html.has-flower-cursor .lightbox-stage img { cursor: auto !important; }
 .mobile-navigation .mobile-menu-logo:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
 .mobile-navigation .mobile-menu-close:focus:not(:focus-visible) { outline: none; }
 .mobile-navigation nav { margin-top: 70px; }
+
+/* Garden: logos never drag on their own; flowers stay where you drop them; a demo shows how. */
+.garden-bloom img { pointer-events: none; user-select: none; -webkit-user-drag: none; }
+.garden-flower { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.garden-flower.is-placing { transition: none; }
+.garden-flower:not(.is-docked):hover .garden-bloom { scale: 1.06; transition: scale 250ms ease; }
+.garden-hint--top { margin: 0 0 14px; color: var(--blue); font-size: 15px; font-weight: 500; }
+.garden-hint--top span { display: inline-block; margin-right: 4px; }
+.garden-demo { position: absolute; z-index: 4; display: none; flex-direction: row; align-items: center; gap: 4px; pointer-events: none; translate: 10% 0%; }
+.garden-demo svg { width: 34px; height: 34px; filter: drop-shadow(0 2px 4px rgba(0,0,0,.3)); }
+.garden-demo span { padding: 3px 9px; border-radius: 999px; background: var(--white); color: var(--blue); font-size: 12px; font-weight: 600; letter-spacing: .02em; white-space: nowrap; }
+.garden.show-demo .garden-demo { display: flex; animation: garden-demo-move 3.2s cubic-bezier(.45,0,.2,1) infinite; }
+.garden-flower.is-demo { animation: garden-demo-move 3.2s cubic-bezier(.45,0,.2,1) infinite; }
+@keyframes garden-demo-move { 0%, 15% { translate: 0 0; } 50%, 62% { translate: 46px -40px; } 90%, 100% { translate: 0 0; } }
+.garden.show-demo .garden-demo { animation-name: garden-demo-hand; }
+@keyframes garden-demo-hand { 0%, 15% { translate: 10% 0%; } 50%, 62% { translate: calc(10% + 46px) -40px; } 90%, 100% { translate: 10% 0%; } }
+@media (prefers-reduced-motion: reduce) { .garden.show-demo .garden-demo, .garden-flower.is-demo { animation: none; } }
+
+/* Header stays visible while scrolling. */
+.site-header { position: sticky; top: 0; z-index: 50; }
+html { scroll-padding-top: 96px; }
+/* Contact page: heading, one line, then the form. Call + other channels come after. */
+.contact-page-section .contact-form { margin-top: 26px; }
+.contact-after { margin-top: 34px; padding-top: 26px; border-top: 1px solid #ddd; text-align: center; }
+.contact-after-call { margin: 0; font-size: 17px; }
+.contact-after-call a { color: var(--blue); font-weight: 500; text-decoration: underline; text-underline-offset: 4px; }
+.contact-after-list { margin-top: 18px; justify-content: center; opacity: .85; }
+.contact-page-section > p { max-width: 46ch; }
+.contact-after { max-width: 640px; margin-left: auto; margin-right: auto; }
