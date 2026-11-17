@@ -2582,3 +2582,9 @@ html { scroll-padding-top: 96px; }
 .contact-after-list { margin-top: 18px; justify-content: center; opacity: .85; }
 .contact-page-section > p { max-width: 46ch; }
 .contact-after { max-width: 640px; margin-left: auto; margin-right: auto; }
+
+/* Garden: scale inside the centring transform, so a docked flower sits dead centre. */
+.garden-flower { --sc: 1; scale: none; transform: translate(-50%, -50%) scale(var(--sc)); transition: left 600ms cubic-bezier(.34,1.4,.64,1), top 600ms cubic-bezier(.34,1.4,.64,1), transform 600ms cubic-bezier(.34,1.4,.64,1); }
+.garden-flower.is-dragging { scale: none; --sc: 1.08; transition: none; }
+.garden-flower.is-docked { scale: none; --sc: 1.55; }
+.garden-flower.is-placing { transition: none; }
