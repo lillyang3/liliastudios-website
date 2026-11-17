@@ -2590,3 +2590,8 @@ html { scroll-padding-top: 96px; }
 .garden-flower.is-placing { transition: none; }
 .end-cta-text a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 .end-cta--light .end-cta-text a { color: var(--blue); }
+
+/* Photo viewer: tall images scroll inside the viewer (mouse wheel, trackpad and touch). */
+.lightbox[open] { grid-template-rows: 100%; height: 100dvh; overflow: hidden; }
+.lightbox-stage { height: 100dvh; min-height: 0; -webkit-overflow-scrolling: touch; }
+.lightbox-stage.is-tall { touch-action: pan-y; }

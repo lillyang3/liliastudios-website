@@ -4,6 +4,7 @@
   if (!images.length || typeof HTMLDialogElement === 'undefined') return;
   const box = document.createElement('dialog');
   box.className = 'lightbox';
+  box.setAttribute('data-lenis-prevent', '');
   box.setAttribute('aria-label', 'Photo viewer');
   box.innerHTML = '<button class="lightbox-close" type="button" aria-label="Close">&times;</button>'
     + '<button class="lightbox-prev" type="button" aria-label="Previous photo">&larr;</button>'
