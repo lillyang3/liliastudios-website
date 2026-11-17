@@ -1,5 +1,5 @@
 (() => {
-  // Services testimonials: four flowers float on a blue field, each carrying a client's logo.
+  // Services testimonials: one flower per client float on a blue field, each carrying a client's logo.
   // Drag one into the middle (or just tap it) and it blooms open to show what that client said.
   const section = document.querySelector('.services-page .testimonials-section');
   const grid = section?.querySelector('.testimonials-grid');
@@ -15,7 +15,7 @@
       logo: card.querySelector('.testimonial-logos img')
     };
   });
-  const homes = [[16, 30], [84, 28], [20, 74], [80, 72]];
+  const homes = [[16, 26], [84, 24], [16, 76], [84, 74], [50, 90]];
   const garden = document.createElement('div');
   garden.className = 'garden';
   garden.innerHTML = `
